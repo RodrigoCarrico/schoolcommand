@@ -1,0 +1,29 @@
+version: '3'
+services:
+    redis:
+        build:
+            dockerfile: ./docker/redis.dockerfile
+            context: .
+        image: rodrigo.carrico/redis
+        container_name: redis-carrico
+        ports:
+            - "6380:6380"
+        networks: 
+            - teste-network
+    rabbitmq: 
+        image: rabbitmq:management
+        container_name: rabbitmq-carrico
+        hostname: rabbitmq
+        ports:
+           - "5672:5672"
+           - "15672:15672"
+        environment:
+           - RABBITMQ_ERLANG_COOKIE=This_is_my_secret_phrase
+           - RABBITMQ_DEFAULT_USER=rodrigo
+           - RABBITMQ_DEFAULT_PASS=carrico_
+           - CLUSTERED=true
+        networks: 
+           - teste-network
+networks: 
+    teste-network:
+        driver: bridge
