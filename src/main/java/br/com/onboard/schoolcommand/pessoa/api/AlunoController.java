@@ -39,7 +39,7 @@ public class AlunoController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<AlunoDto> atualizar(@PathVariable String id,
-			@RequestBody @Valid AlunoDto alunoDto, UriComponentsBuilder uriBuilder) {
+			@RequestBody @Valid AlunoDto alunoDto) {
 		try {
 			alunoDto = alunoService.atualizar(id, alunoDto);
 			return ResponseEntity.ok(alunoDto);

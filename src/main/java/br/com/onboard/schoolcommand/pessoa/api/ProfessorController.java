@@ -31,6 +31,7 @@ public class ProfessorController {
 	@Transactional
 	public ResponseEntity<ProfessorDto> cadastrar(@RequestBody @Valid ProfessorDto professorDto,
 			UriComponentsBuilder uriBuilder) {
+		System.out.println(professorDto.toString());
 		professorDto = professorService.cadastrar(professorDto);
 		URI uri = uriBuilder.path("/{id}").buildAndExpand(professorDto.getId()).toUri();
 
@@ -40,7 +41,7 @@ public class ProfessorController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<ProfessorDto> atualizar(@PathVariable String id,
-			@RequestBody @Valid ProfessorDto professorDto, UriComponentsBuilder uriBuilder) {
+			@RequestBody @Valid ProfessorDto professorDto) {
 		try {
 			professorDto = professorService.atualizar(id, professorDto);
 			return ResponseEntity.ok(professorDto);

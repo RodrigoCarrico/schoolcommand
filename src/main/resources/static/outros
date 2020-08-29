@@ -1,0 +1,43 @@
+
+# data source
+#spring.datasource.driverClassName=org.h2.Driver
+#spring.datasource.url=jdbc:h2:mem:schoolcommand
+#spring.datasource.username=sa
+#spring.datasource.password=
+
+# jpa
+#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.properties.hibernate.show_sql=true
+#spring.jpa.properties.hibernate.format_sql=true
+
+# h2
+#spring.h2.console.enabled=true
+#spring.h2.console.path=/h2-console
+
+# rabbitMQ
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=rodrigo
+spring.rabbitmq.password=carrico_
+
+# Queue
+queue.school.name=SchoolQueue
+exchange.school.name=SchoolExchange
+
+# MongoDB Authentication database name.
+spring.data.mongodb.authentication-database=admin
+# Database name
+spring.data.mongodb.database=test
+# Fully qualified name of the FieldNamingStrategy to use.
+# spring.data.mongodb.field-naming-strategy=
+# GridFS database name.
+# spring.data.mongodb.grid-fs-database=
+# Mongo server host.
+spring.data.mongodb.host=localhost
+spring.data.mongodb.username=root
+spring.data.mongodb.password= root
+spring.data.mongodb.port=27017
+spring.data.mongodb.repositories.enabled=true
+# Mongo database URI. When set, host and port are ignored.
+# spring.data.mongodb.uri=mongodb://localhost/test

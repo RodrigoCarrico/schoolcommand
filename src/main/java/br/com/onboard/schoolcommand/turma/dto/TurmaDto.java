@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class TurmaDto {
-	private Long id;
+	private String id;
 	private String descricao;
 	private int anoLetivo;
 	private int periodoLetivo;

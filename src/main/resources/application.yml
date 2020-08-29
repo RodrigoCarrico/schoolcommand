@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    allow-bean-definition-overriding: false
+
+  data:
+    mongodb:
+      authentication-database: admin
+      database: test
+      host: localhost
+      username: root
+      password: root
+      port: 27017
+      repositories:
+        enabled: true
+
+  cloud:
+    stream:
+      binding:
+        school-output-events:
+          destination: school-events
+          group: school-core
+          binder: rabbit1
+      rabbit:
+        bindings:
+          school-output-events:
+            producer:
+              exchange-type: fanout
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: rodrigo
+                password: carrico_

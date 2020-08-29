@@ -15,7 +15,7 @@ import br.com.onboard.schoolcommand.utils.GenerateUUID;
 
 @SpringBootTest
 class ProfessorTests {
-	@Autowired
+	/*@Autowired
 	ProfessorService professoService;
 
 	@Test
@@ -48,5 +48,5 @@ class ProfessorTests {
 		String value = ProfessorDto.toGsonString(professor);
 		System.out.println(value);
 		assertThat(value).isNotBlank();
-	}
+	}*/
 }

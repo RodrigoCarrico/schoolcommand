@@ -1,9 +1,10 @@
 package br.com.onboard.schoolcommand.pessoa.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import br.com.onboard.schoolcommand.pessoa.domain.model.Professor;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ProfessorRepository extends JpaRepository<Professor,String> {
+public interface ProfessorRepository extends MongoRepository<Professor, String> {
+
+    Professor insert(Professor professor);
 
 }

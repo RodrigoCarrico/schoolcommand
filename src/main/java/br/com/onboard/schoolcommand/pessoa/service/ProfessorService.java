@@ -1,48 +1,43 @@
 package br.com.onboard.schoolcommand.pessoa.service;
 
-import java.io.Serializable;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import br.com.onboard.schoolcommand.config.amqp.SCHOOLPublisher;
+import br.com.onboard.schoolcommand.pessoa.domain.model.Professor;
 import br.com.onboard.schoolcommand.pessoa.dto.ProfessorDto;
 import br.com.onboard.schoolcommand.pessoa.exception.PessoaException;
-import br.com.onboard.schoolcommand.pessoa.domain.model.Professor;
 import br.com.onboard.schoolcommand.pessoa.repository.ProfessorRepository;
-import br.com.onboard.schoolcommand.utils.PropertiesClass;
-import br.com.onboard.schoolcommand.utils.SchoolQueueSender;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.validation.Valid;
+import java.util.Optional;
 
 @Service
 public class ProfessorService {
 
-	@Autowired
-	ProfessorRepository professorRepository;
+    @Autowired
+    ProfessorRepository professorRepository;
 
-	@Autowired
-	SchoolQueueSender<Serializable> schoolQueueSender;
+    @Autowired
+    SCHOOLPublisher publisher;
 
-	@Transactional
-	public ProfessorDto atualizar(String id, @Valid ProfessorDto professorDto) {
-		Optional<Professor> optional = professorRepository.findById(id);
-		if (optional.isPresent()) {
-			Professor professor = professorDto.atualiza(optional.get(), professorRepository);
-			schoolQueueSender.send(ProfessorDto.toGsonString(professor), PropertiesClass.getName(professor));
-			return new ProfessorDto(professor);
-		}
-		throw new PessoaException("Não foi possivel encontrar o professor com o id: " + id);
-	}
+    public ProfessorDto atualizar(String id, @Valid ProfessorDto professorDto) {
+        Optional<Professor> optional = professorRepository.findById(id);
+        if (optional.isPresent()) {
+            Professor professor = professorDto.alterar(id, optional.get());
+            Professor prof = professorRepository.save(professor);
+            publisher.dispach(professor);
+            return new ProfessorDto(prof);
+        }
+        throw new PessoaException("Não foi possivel encontrar o professor com o id: " + id);
 
-	@Transactional
-	public ProfessorDto cadastrar(@Valid ProfessorDto professorDto) {
-		Professor professor = professorDto.converter();
-		professorRepository.save(professor);
-		schoolQueueSender.send(ProfessorDto.toGsonString(professor), PropertiesClass.getName(professor));
-		return new ProfessorDto(professor);
+    }
 
-	}
+    public ProfessorDto cadastrar(@Valid ProfessorDto professorDto) {
+        Professor professor = professorDto.build();
+        professorRepository.insert(professor);
+        publisher.dispach(professor);
+        return new ProfessorDto(professor);
+
+    }
 
 }
