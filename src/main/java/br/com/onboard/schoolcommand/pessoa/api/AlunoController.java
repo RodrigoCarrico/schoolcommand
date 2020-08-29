@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.onboard.schoolcommand.pessoa.dto.AlunoDto;
-import br.com.onboard.schoolcommand.pessoa.service.AlunoService;
+import br.com.onboard.schoolcommand.pessoa.api.dto.AlunoDto;
+import br.com.onboard.schoolcommand.pessoa.application.service.AlunoApplicationService;
 
 @RestController
 @RequestMapping(path = AlunoController.PATH)
@@ -24,7 +24,7 @@ public class AlunoController {
 	public static final String PATH = "/api/v1/aluno";
 	
 	@Autowired
-	AlunoService alunoService;
+	AlunoApplicationService alunoService;
 	
 	@PostMapping
 	@Transactional

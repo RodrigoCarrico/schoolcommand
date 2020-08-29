@@ -26,8 +26,8 @@ public class Aluno extends Pessoa {
     private Collection<String> turmas = new HashSet<>();
 
     @Builder
-    public Aluno(String id, String nome, String email, String cpf, Integer matricula, FormaIngresso formaIngresso, Set<String> turmas) {
-        super(id, nome, email, cpf);
+    public Aluno(String nome, String email, String cpf, Integer matricula, FormaIngresso formaIngresso, Set<String> turmas) {
+        super(nome, email, cpf);
         this.formaIngresso = formaIngresso;
         this.matricula = matricula;
         this.turmas = turmas;

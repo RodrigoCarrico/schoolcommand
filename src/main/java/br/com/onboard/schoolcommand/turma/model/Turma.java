@@ -1,6 +1,5 @@
 package br.com.onboard.schoolcommand.turma.model;
 
-import br.com.onboard.schoolcommand.utils.GenerateUUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,7 +45,6 @@ public class Turma {
 
     public Turma(String id, @NotNull @NotEmpty @Length(min = 1, max = 255) String descricao, @NotNull @NotEmpty int anoLetivo,
                  @NotNull @NotEmpty int periodoLetivo, @NotNull @NotEmpty int numeroVagas) {
-        this.id = GenerateUUID.generate();
         this.descricao = descricao;
         this.anoLetivo = anoLetivo;
         this.periodoLetivo = periodoLetivo;

@@ -1,4 +1,4 @@
-package br.com.onboard.schoolcommand.pessoa.service;
+package br.com.onboard.schoolcommand.pessoa.application.service;
 
 import java.util.Optional;
 
@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.onboard.schoolcommand.pessoa.dto.AlunoDto;
+import br.com.onboard.schoolcommand.pessoa.api.dto.AlunoDto;
 import br.com.onboard.schoolcommand.pessoa.exception.PessoaException;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
 import br.com.onboard.schoolcommand.pessoa.repository.AlunoRepository;
 
 @Service
-public class AlunoService {
+public class AlunoApplicationService {
 
 	@Autowired
 	AlunoRepository alunoRepository;

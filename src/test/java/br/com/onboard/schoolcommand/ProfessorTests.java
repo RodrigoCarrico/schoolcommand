@@ -2,16 +2,7 @@ package br.com.onboard.schoolcommand;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import br.com.onboard.schoolcommand.pessoa.dto.ProfessorDto;
-import br.com.onboard.schoolcommand.pessoa.domain.enums.Titulacao;
-import br.com.onboard.schoolcommand.pessoa.domain.model.Professor;
-import br.com.onboard.schoolcommand.pessoa.service.ProfessorService;
-import br.com.onboard.schoolcommand.utils.GenerateUUID;
 
 @SpringBootTest
 class ProfessorTests {

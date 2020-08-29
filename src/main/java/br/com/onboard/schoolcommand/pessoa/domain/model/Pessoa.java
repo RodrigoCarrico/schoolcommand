@@ -1,11 +1,11 @@
 package br.com.onboard.schoolcommand.pessoa.domain.model;
 
 import br.com.onboard.schoolcommand.utils.DomainCommandEvents;
-import br.com.onboard.schoolcommand.utils.GenerateUUID;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,13 +20,16 @@ public abstract class Pessoa extends DomainCommandEvents {
     private String nome;
     @NotNull
     @Length(min = 1, max = 100)
+    @Indexed(unique = true)
     private String email;
     @NotNull
     @Length(min = 1, max = 12)
+    @Indexed(unique = true)
     private String cpf;
 
-    public Pessoa(String id, @NotNull @Length(min = 1, max = 255) String nome, @NotNull @Length(min = 1, max = 100) String email, @NotNull @Length(min = 1, max = 12) String cpf) {
-       // this.id = GenerateUUID.generate();
+    public Pessoa(@NotNull @Length(min = 1, max = 255) String nome,
+                  @NotNull @Length(min = 1, max = 100) String email,
+                  @NotNull @Length(min = 1, max = 12) String cpf) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;

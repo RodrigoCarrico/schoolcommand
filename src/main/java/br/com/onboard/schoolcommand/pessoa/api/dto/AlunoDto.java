@@ -1,4 +1,4 @@
-package br.com.onboard.schoolcommand.pessoa.dto;
+package br.com.onboard.schoolcommand.pessoa.api.dto;
 
 import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
