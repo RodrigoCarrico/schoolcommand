@@ -23,6 +23,7 @@ public class ProfessorCriadoEvent implements DomainCommand {
 
     public static ProfessorCriadoEvent from(Professor professor) {
         return ProfessorCriadoEvent.builder()
+                .id(professor.getId())
                 .cpf(professor.getCpf())
                 .email(professor.getEmail()).id(professor.getId())
                 .nome(professor.getNome()).titulacao(professor.getTitulacao())
@@ -36,6 +37,6 @@ public class ProfessorCriadoEvent implements DomainCommand {
     @Data
     @AllArgsConstructor(staticName = "from")
     public static final class ProfessorDisciplinaEvent {
-        private final String disciplina;
+        private final String disciplinaId;
     }
 }

@@ -29,7 +29,7 @@ public class Professor extends Pessoa {
 
     @Builder
     public Professor(String nome, String email, String cpf, Titulacao titulacao, Set<String> disciplinas) {
-        super( nome, email, cpf);
+        super(nome, email, cpf);
         this.titulacao = titulacao;
         this.disciplinas = disciplinas;
         this.addEvent(ProfessorCriadoEvent.from(this));

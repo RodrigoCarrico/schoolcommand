@@ -32,7 +32,7 @@ services:
         networks:
           - teste-network
 
-    rabbitmq: 
+    rabbitmq:
         image: rabbitmq:management
         container_name: rabbitmq-carrico
         hostname: rabbitmq
