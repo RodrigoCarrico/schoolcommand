@@ -36,6 +36,6 @@ public class ProfessorAlteradoEvent implements DomainCommand {
     @Data
     @AllArgsConstructor(staticName = "from")
     public static final class ProfessorDisciplinaEvent {
-        private final String disciplina;
+        private final String disciplinaId;
     }
 }
