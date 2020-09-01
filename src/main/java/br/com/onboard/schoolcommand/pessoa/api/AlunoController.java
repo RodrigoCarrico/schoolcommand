@@ -4,6 +4,8 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
+import br.com.onboard.schoolcommand.pessoa.application.command.aluno.AlteraAlunoCommand;
+import br.com.onboard.schoolcommand.pessoa.application.command.aluno.CriarAlunoCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +32,16 @@ public class AlunoController {
 	@Transactional
 	public ResponseEntity<AlunoDto> cadastrar(@RequestBody @Valid AlunoDto alunoDto,
 			UriComponentsBuilder uriBuilder) {
-		alunoDto = alunoService.cadastrar(alunoDto);
+		var cmd = CriarAlunoCommand.builder()
+				.cpf(alunoDto.getCpf())
+				.email(alunoDto.getEmail())
+				.formaIngresso(alunoDto.getFormaIngresso())
+				.matricula(alunoDto.getMatricula())
+				.nome(alunoDto.getNome())
+				.turmas(alunoDto.getTurmas())
+				.build();
+
+		alunoDto = alunoService.handle(cmd);
 		URI uri = uriBuilder.path("/{id}").buildAndExpand(alunoDto.getId()).toUri();
 
 		return ResponseEntity.created(uri).body(alunoDto);
@@ -40,8 +51,17 @@ public class AlunoController {
 	@PutMapping("/{id}")
 	public ResponseEntity<AlunoDto> atualizar(@PathVariable String id,
 			@RequestBody @Valid AlunoDto alunoDto) {
+
+		var cmd = AlteraAlunoCommand.builder()
+				.cpf(alunoDto.getCpf())
+				.email(alunoDto.getEmail())
+				.formaIngresso(alunoDto.getFormaIngresso())
+				.matricula(alunoDto.getMatricula())
+				.nome(alunoDto.getNome())
+				.turmas(alunoDto.getTurmas())
+				.build();
 		try {
-			alunoDto = alunoService.atualizar(id, alunoDto);
+			alunoDto = alunoService.handle(id, cmd);
 			return ResponseEntity.ok(alunoDto);
 		} catch (Exception e) {
 			e.printStackTrace();

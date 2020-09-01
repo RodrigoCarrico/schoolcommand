@@ -1,15 +1,13 @@
 package br.com.onboard.schoolcommand.pessoa.domain.model;
 
 import br.com.onboard.schoolcommand.pessoa.domain.enums.Titulacao;
-import br.com.onboard.schoolcommand.pessoa.domain.events.ProfessorAlteradoEvent;
-import br.com.onboard.schoolcommand.pessoa.domain.events.ProfessorCriadoEvent;
+import br.com.onboard.schoolcommand.pessoa.domain.events.professor.ProfessorAlteradoEvent;
+import br.com.onboard.schoolcommand.pessoa.domain.events.professor.ProfessorCriadoEvent;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 @ToString(callSuper = true)

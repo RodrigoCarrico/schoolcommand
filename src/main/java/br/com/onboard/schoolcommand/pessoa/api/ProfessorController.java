@@ -1,8 +1,8 @@
 package br.com.onboard.schoolcommand.pessoa.api;
 
 import br.com.onboard.schoolcommand.pessoa.api.dto.ProfessorDto;
-import br.com.onboard.schoolcommand.pessoa.application.command.AlteraProfessorCommand;
-import br.com.onboard.schoolcommand.pessoa.application.command.CriarProfessorCommand;
+import br.com.onboard.schoolcommand.pessoa.application.command.professor.AlteraProfessorCommand;
+import br.com.onboard.schoolcommand.pessoa.application.command.professor.CriarProfessorCommand;
 import br.com.onboard.schoolcommand.pessoa.application.service.ProfessorApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

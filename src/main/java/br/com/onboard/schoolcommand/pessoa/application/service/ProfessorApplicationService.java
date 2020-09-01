@@ -2,8 +2,8 @@ package br.com.onboard.schoolcommand.pessoa.application.service;
 
 import br.com.onboard.schoolcommand.config.amqp.SCHOOLPublisher;
 import br.com.onboard.schoolcommand.pessoa.api.dto.ProfessorDto;
-import br.com.onboard.schoolcommand.pessoa.application.command.AlteraProfessorCommand;
-import br.com.onboard.schoolcommand.pessoa.application.command.CriarProfessorCommand;
+import br.com.onboard.schoolcommand.pessoa.application.command.professor.AlteraProfessorCommand;
+import br.com.onboard.schoolcommand.pessoa.application.command.professor.CriarProfessorCommand;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Professor;
 import br.com.onboard.schoolcommand.pessoa.exception.PessoaException;
 import br.com.onboard.schoolcommand.pessoa.repository.ProfessorRepository;
