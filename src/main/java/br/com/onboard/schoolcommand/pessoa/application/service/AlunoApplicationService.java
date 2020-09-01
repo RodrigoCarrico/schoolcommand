@@ -57,7 +57,7 @@ public class AlunoApplicationService {
         Optional<Aluno> optional = alunoRepository.findById(id);
         if (optional.isPresent()) {
             Aluno aluno = optional.get();
-            aluno.altera(cmd.getId(), cmd.getNome(), cmd.getEmail(), cmd.getCpf(),cmd.getMatricula(),cmd.getFormaIngresso(),cmd.getTurmas());
+            aluno.altera(id, cmd.getNome(), cmd.getEmail(), cmd.getCpf(),cmd.getMatricula(),cmd.getFormaIngresso(),cmd.getTurmas());
 
             Aluno alunoRetorno = alunoRepository.save(aluno);
 

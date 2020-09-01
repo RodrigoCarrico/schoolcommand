@@ -29,7 +29,6 @@ public class AlunoController {
 	AlunoApplicationService alunoService;
 	
 	@PostMapping
-	@Transactional
 	public ResponseEntity<AlunoDto> cadastrar(@RequestBody @Valid AlunoDto alunoDto,
 			UriComponentsBuilder uriBuilder) {
 		var cmd = CriarAlunoCommand.builder()

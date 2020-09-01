@@ -1,6 +1,7 @@
 package br.com.onboard.schoolcommand.pessoa.api;
 
 import br.com.onboard.schoolcommand.pessoa.api.dto.AlunoDto;
+import br.com.onboard.schoolcommand.pessoa.application.command.aluno.AlteraAlunoCommand;
 import br.com.onboard.schoolcommand.pessoa.application.command.aluno.CriarAlunoCommand;
 import br.com.onboard.schoolcommand.pessoa.application.service.AlunoApplicationService;
 import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
@@ -87,5 +88,51 @@ public class AlunoControllerTest {
         // then
         Mockito.verify(alunoApplicationService).handle(cmd);
 
+    }
+
+
+    @Test
+    @DisplayName("Alteracao de Aluno core")
+    public void AlteracaoDeAlunoCoreController() throws Exception {
+        turmas.add("1");
+        var dto = AlunoDto.builder()
+                .cpf(cpf)
+                .email(email)
+                .matricula(matricula)
+                .formaIngresso(formaIngresso)
+                .nome(nome)
+                .turmas(turmas)
+                .build();
+
+        var cmd = AlteraAlunoCommand.builder()
+                .cpf(dto.getCpf())
+                .email(dto.getEmail())
+                .matricula(dto.getMatricula())
+                .formaIngresso(dto.getFormaIngresso())
+                .nome(dto.getNome())
+                .turmas(dto.getTurmas())
+                .build();
+
+        AlunoDto alunoDto = AlunoDto.builder().
+                id(id)
+                .cpf(dto.getCpf())
+                .email(dto.getEmail())
+                .matricula(dto.getMatricula())
+                .formaIngresso(dto.getFormaIngresso())
+                .nome(dto.getNome())
+                .turmas(dto.getTurmas())
+                .build();
+
+        Mockito.when(alunoApplicationService.handle(id, cmd)).thenReturn(alunoDto);
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT,
+                AlunoController.PATH+"/"+id).contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(TestUtils.objectToJson(dto)))
+                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.nome", CoreMatchers.is(nome)));
+
+        // then
+        Mockito.verify(alunoApplicationService).handle(id,cmd);
     }
 }
