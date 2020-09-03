@@ -27,16 +27,14 @@ public class ProfessorApplicationService {
 
         Professor professor = Professor.builder()
                 .cpf(cmd.getCpf())
-                .disciplinas(cmd.getDisciplinas())
                 .email(cmd.getEmail())
                 .nome(cmd.getNome())
                 .titulacao(cmd.getTitulacao())
                 .build();
         Professor professorRetorno = professorRepository.save(professor);
-        publisher.dispach(professorRetorno);
+        publisher.dispatch(professorRetorno);
 
         return ProfessorDto.builder().cpf(professorRetorno.getCpf())
-                .disciplinas((Set<String>) professorRetorno.getDisciplinas())
                 .email(professorRetorno.getEmail())
                 .id(professorRetorno.getId())
                 .nome(professorRetorno.getNome())
@@ -50,12 +48,11 @@ public class ProfessorApplicationService {
         Optional<Professor> optional = professorRepository.findById(cmd.getId());
         if (optional.isPresent()) {
             Professor professor = optional.get();
-            professor.alterar(cmd.getId(), cmd.getNome(), cmd.getEmail(), cmd.getCpf(), cmd.getTitulacao(),cmd.getDisciplinas());
+            professor.alterar(cmd.getId(), cmd.getNome(), cmd.getEmail(), cmd.getCpf(), cmd.getTitulacao());
             Professor professorRetorno = professorRepository.save(professor);
-            publisher.dispach(professor);
+            publisher.dispatch(professor);
 
             return ProfessorDto.builder().cpf(professorRetorno.getCpf())
-                    .disciplinas((Set<String>) professorRetorno.getDisciplinas())
                     .email(professorRetorno.getEmail())
                     .id(professorRetorno.getId())
                     .nome(professorRetorno.getNome())

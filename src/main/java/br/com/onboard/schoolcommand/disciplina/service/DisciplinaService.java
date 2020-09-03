@@ -16,7 +16,7 @@ public class DisciplinaService {
     SchoolQueueSender schoolQueueSender;
 */
 
-    @Transactional
+  //  @Transactional
     public DisciplinaDto cadastrar(@Valid DisciplinaDto disciplinaDto) {
        /* Disciplina disciplina = disciplinaDto.converter();'
         disciplinaRepository.save(disciplina);

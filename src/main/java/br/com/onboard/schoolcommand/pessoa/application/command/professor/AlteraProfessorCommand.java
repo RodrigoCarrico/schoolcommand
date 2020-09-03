@@ -14,5 +14,4 @@ public class AlteraProfessorCommand {
     private String email;
     private String cpf;
     private Titulacao titulacao;
-    private Set<String> disciplinas;
 }

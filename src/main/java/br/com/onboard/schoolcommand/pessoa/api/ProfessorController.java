@@ -25,7 +25,7 @@ public class ProfessorController {
     public ResponseEntity<ProfessorDto> criar(@RequestBody @Valid ProfessorDto professorDto,
                                               UriComponentsBuilder uriBuilder) {
         var cmd = CriarProfessorCommand.builder().cpf(professorDto.getCpf())
-                .disciplinas(professorDto.getDisciplinas()).email(professorDto.getEmail()).nome(professorDto.getNome())
+                .email(professorDto.getEmail()).nome(professorDto.getNome())
                 .titulacao(professorDto.getTitulacao()).build();
         professorDto = professorService.handle(cmd);
         URI uri = uriBuilder.path("/{id}").buildAndExpand(professorDto.getId()).toUri();
@@ -39,7 +39,7 @@ public class ProfessorController {
                                                   @RequestBody @Valid ProfessorDto professorDto) {
         try {
             var cmd = AlteraProfessorCommand.builder()
-                    .cpf(professorDto.getCpf()).disciplinas(professorDto.getDisciplinas())
+                    .cpf(professorDto.getCpf())
                     .email(professorDto.getEmail())
                     .id(id)
                     .nome(professorDto.getNome())

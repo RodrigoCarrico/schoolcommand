@@ -2,12 +2,9 @@ package br.com.onboard.schoolcommand.pessoa.application.service;
 
 import br.com.onboard.schoolcommand.config.amqp.SCHOOLPublisher;
 import br.com.onboard.schoolcommand.pessoa.api.dto.AlunoDto;
-import br.com.onboard.schoolcommand.pessoa.api.dto.ProfessorDto;
 import br.com.onboard.schoolcommand.pessoa.application.command.aluno.AlteraAlunoCommand;
 import br.com.onboard.schoolcommand.pessoa.application.command.aluno.CriarAlunoCommand;
-import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
-import br.com.onboard.schoolcommand.pessoa.domain.model.Professor;
 import br.com.onboard.schoolcommand.pessoa.exception.PessoaException;
 import br.com.onboard.schoolcommand.pessoa.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +36,7 @@ public class AlunoApplicationService {
 
         Aluno alunoRetorno = alunoRepository.save(aluno);
 
-        publisher.dispach(alunoRetorno);
+        publisher.dispatch(alunoRetorno);
 
         return AlunoDto.builder()
                 .cpf(alunoRetorno.getCpf())
@@ -61,7 +58,7 @@ public class AlunoApplicationService {
 
             Aluno alunoRetorno = alunoRepository.save(aluno);
 
-            publisher.dispach(aluno);
+            publisher.dispatch(aluno);
 
             return AlunoDto.builder().cpf(alunoRetorno.getCpf())
                     .turmas((Set<String>) alunoRetorno.getTurmas())

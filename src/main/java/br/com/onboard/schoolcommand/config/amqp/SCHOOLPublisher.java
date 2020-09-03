@@ -12,7 +12,7 @@ public class SCHOOLPublisher<T extends DomainCommandEvents> {
 
     private SCHOOLChannel.SchoolExchangeOutput schoolExchangeOutput;
 
-    public void dispach(T object) {
+    public void dispatch(T object) {
         for (var event : object.getEvents()) {
             schoolExchangeOutput.output().send(
                     MessageBuilder.withPayload(event)

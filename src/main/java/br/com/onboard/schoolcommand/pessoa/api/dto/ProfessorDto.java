@@ -27,6 +27,5 @@ public class ProfessorDto {
     @NotNull
     private Titulacao titulacao;
 
-    private Set<String> disciplinas;
 
 }

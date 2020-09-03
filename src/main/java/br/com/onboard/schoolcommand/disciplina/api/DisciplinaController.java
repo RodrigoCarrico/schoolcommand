@@ -21,18 +21,18 @@ public class DisciplinaController {
     public static final String PATH = "/api/v1/disciplina";
 
 
-    @Autowired
-    DisciplinaService disciplinaService;
+   // @Autowired
+   // DisciplinaService disciplinaService;
 
 
     @PostMapping
     @Transactional
     public ResponseEntity<DisciplinaDto> cadastrar(@RequestBody @Valid DisciplinaDto disciplinaDto,
                                                    UriComponentsBuilder uriBuilder) {
-        disciplinaDto = disciplinaService.cadastrar(disciplinaDto);
-        URI uri = uriBuilder.path("/{id}").buildAndExpand(disciplinaDto.getId()).toUri();
+      //  disciplinaDto = disciplinaService.cadastrar(disciplinaDto);
+       // URI uri = uriBuilder.path("/{id}").buildAndExpand(disciplinaDto.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(disciplinaDto);
+        return null;//ResponseEntity.created(uri).body(disciplinaDto);
 
     }
 

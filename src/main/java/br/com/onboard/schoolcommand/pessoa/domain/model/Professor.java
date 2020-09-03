@@ -26,14 +26,14 @@ public class Professor extends Pessoa {
     private Collection<String> disciplinas ;
 
     @Builder
-    public Professor(String nome, String email, String cpf, Titulacao titulacao, Set<String> disciplinas) {
+    public Professor(String nome, String email, String cpf, Titulacao titulacao) {
         super(nome, email, cpf);
         this.titulacao = titulacao;
         this.disciplinas = disciplinas;
         this.addEvent(ProfessorCriadoEvent.from(this));
     }
 
-    public void alterar(String id, String nome, String email, String cpf, Titulacao titulacao, Set<String> disciplinas){
+    public void alterar(String id, String nome, String email, String cpf, Titulacao titulacao){
         this.setId(id);
         this.setNome(nome);
         this.setEmail(email);

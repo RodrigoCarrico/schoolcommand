@@ -9,7 +9,6 @@ import java.util.Set;
 @Data
 @Builder
 public class AlteraAlunoCommand {
-    private String id;
     private String nome;
     private String email;
     private String cpf;
