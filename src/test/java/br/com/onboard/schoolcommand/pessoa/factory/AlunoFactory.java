@@ -3,13 +3,12 @@ package br.com.onboard.schoolcommand.pessoa.factory;
 import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
 import br.com.onboard.schoolcommand.pessoa.repository.AlunoRepository;
-import br.com.onboard.schoolcommand.utils.GeneratedUUID;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AlunoFactoryTest {
+public class AlunoFactory {
     
     private final static String nome = "Teste Core aluno";
     private final static String email = "testecore@teste.com.br";

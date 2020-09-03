@@ -6,7 +6,7 @@ import br.com.onboard.schoolcommand.pessoa.repository.ProfessorRepository;
 import lombok.Getter;
 
 @Getter
-public class ProfessorFactoryTest {
+public class ProfessorFactory {
 
     private final static String cpf = "00000000003";
     private final static String email = "teste3@teste3.com.br";

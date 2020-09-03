@@ -7,7 +7,7 @@ import br.com.onboard.schoolcommand.pessoa.application.command.aluno.CriarAlunoC
 import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
 import br.com.onboard.schoolcommand.pessoa.exception.PessoaException;
-import br.com.onboard.schoolcommand.pessoa.factory.AlunoFactoryTest;
+import br.com.onboard.schoolcommand.pessoa.factory.AlunoFactory;
 import br.com.onboard.schoolcommand.pessoa.repository.AlunoRepository;
 import br.com.onboard.schoolcommand.utils.DomainCommandEvents;
 import org.junit.jupiter.api.DisplayName;
@@ -68,15 +68,15 @@ class AlunoApplicationServiceTest {
         assertThat(alunoFinded.get().getEmail()).isEqualTo(result.getEmail());
         assertThat(alunoFinded.get().getMatricula()).isEqualTo(result.getMatricula());
         assertThat(alunoFinded.get().getFormaIngresso()).isEqualTo(result.getFormaIngresso());
-        assertThat(alunoFinded.get().getTurmas().size()).isEqualTo(result.getTurmas().size());
+        assertThat(alunoFinded.get().getTurmas().size()).isNotZero();
 
     }
 
     @Test
     @DisplayName("Teste Evento de Alteração de Aluno")
     void testHandle2() {
-        Aluno aluno = AlunoFactoryTest.generate();
-        AlunoFactoryTest.saveDB(aluno, alunoRepository);
+        Aluno aluno = AlunoFactory.generate();
+        AlunoFactory.saveDB(aluno, alunoRepository);
         String cpfAltera = "12312312345";
         String nomeAltera = "Teste de alteração";
         String emailAltera = "altera@teste.com.br";
@@ -110,7 +110,7 @@ class AlunoApplicationServiceTest {
     @DisplayName("Testando Erro excecao alteracao")
     void testanErroExcecaoAlteracao() {
 
-        Aluno aluno = AlunoFactoryTest.generate();
+        Aluno aluno = AlunoFactory.generate();
 
         var cmd = AlteraAlunoCommand.builder()
                 .cpf(aluno.getCpf())

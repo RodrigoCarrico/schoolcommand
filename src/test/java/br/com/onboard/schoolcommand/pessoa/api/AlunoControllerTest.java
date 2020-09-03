@@ -27,7 +27,7 @@ import java.util.Set;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class AlunoControllerTest {
+class AlunoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -44,7 +44,7 @@ public class AlunoControllerTest {
 
     @Test
     @DisplayName("Criação de Aluno core")
-    public void CriacaoDeAlunoCoreController() throws Exception {
+     void CriacaoDeAlunoCoreController() throws Exception {
         var dto = AlunoDto.builder()
                 .cpf(cpf)
                 .email(email)
@@ -88,7 +88,7 @@ public class AlunoControllerTest {
 
     @Test
     @DisplayName("Alteracao de Aluno core")
-    public void AlteracaoDeAlunoCoreController() throws Exception {
+    void AlteracaoDeAlunoCoreController() throws Exception {
         var dto = AlunoDto.builder()
                 .cpf(cpf)
                 .email(email)
