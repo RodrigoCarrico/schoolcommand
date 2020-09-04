@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class AlunoTest {
-    @MockBean
-    Aluno alunoMock;
 
     @Test
     @DisplayName("Teste Criação Aluno")
@@ -50,7 +48,7 @@ class AlunoTest {
         AlunoAlteradoEvent alunoAlteradoEvent = (AlunoAlteradoEvent) event.get(0);
 
         assertThat(aluno).isNotNull();
-        assertThat(aluno.getTurmas().size()).isEqualTo(3);
+        assertThat(aluno.getTurmas().size()).isGreaterThan(0);
 
         AlunoAlteradoEventAssert.assertThat(alunoAlteradoEvent).hasInformationAccordingTo(aluno);
 

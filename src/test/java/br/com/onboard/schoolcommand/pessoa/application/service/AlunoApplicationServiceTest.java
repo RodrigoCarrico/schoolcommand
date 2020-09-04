@@ -29,22 +29,23 @@ class AlunoApplicationServiceTest {
     AlunoRepository alunoRepository;
 
     @SpyBean
-    SCHOOLPublisher publisher;
+    SCHOOLPublisher schoolPublisher;
 
     @Autowired
     AlunoApplicationService alunoApplicationService;
 
-    private final String id = UUID.randomUUID().toString();
-    private final String nome = "Teste Application Aluno";
-    private final String email = "testealuno@teste.com.br";
-    private final String cpf = "12312312312";
-    private final Integer matricula = 1;
-    private final FormaIngresso formaIngresso = FormaIngresso.ENADE;
-    private final Set<String> turmas = new HashSet<>(Arrays.asList("1", "2"));
+
 
     @Test
     @DisplayName("Teste Evento de Criação de Aluno")
-    void testHandle() {
+    void deveFazerCriacaoDoAluno() {
+        String nome = "Teste Application Aluno";
+        String email = "testealuno@teste.com.br";
+        String cpf = "12312312312";
+        Integer matricula = 1;
+        FormaIngresso formaIngresso = FormaIngresso.ENADE;
+        Set<String> turmas = new HashSet<>(Arrays.asList("1", "2"));
+
         var cmd = CriarAlunoCommand.builder()
                 .cpf(cpf)
                 .email(email)
@@ -58,23 +59,25 @@ class AlunoApplicationServiceTest {
         AlunoDto result = alunoApplicationService.handle(cmd);
 
         var eventArgument = ArgumentCaptor.forClass(DomainCommandEvents.class);
-        Mockito.verify(publisher).dispatch(eventArgument.capture());
+        Mockito.verify(schoolPublisher).dispatch(eventArgument.capture());
 
         Optional<Aluno> alunoFinded = alunoRepository.findById(result.getId());
 
-        assertThat(alunoFinded.get().getId()).isEqualTo(result.getId());
-        assertThat(alunoFinded.get().getCpf()).isEqualTo(result.getCpf());
-        assertThat(alunoFinded.get().getNome()).isEqualTo(result.getNome());
-        assertThat(alunoFinded.get().getEmail()).isEqualTo(result.getEmail());
-        assertThat(alunoFinded.get().getMatricula()).isEqualTo(result.getMatricula());
-        assertThat(alunoFinded.get().getFormaIngresso()).isEqualTo(result.getFormaIngresso());
-        assertThat(alunoFinded.get().getTurmas().size()).isNotZero();
+        assertThat(alunoFinded).isPresent();
+        Aluno alunnof = alunoFinded.get();
+        assertThat(alunnof.getId()).isEqualTo(result.getId());
+        assertThat(alunnof.getCpf()).isEqualTo(result.getCpf());
+        assertThat(alunnof.getNome()).isEqualTo(result.getNome());
+        assertThat(alunnof.getEmail()).isEqualTo(result.getEmail());
+        assertThat(alunnof.getMatricula()).isEqualTo(result.getMatricula());
+        assertThat(alunnof.getFormaIngresso()).isEqualTo(result.getFormaIngresso());
+        assertThat(alunnof.getTurmas().size()).isNotZero();
 
     }
 
     @Test
     @DisplayName("Teste Evento de Alteração de Aluno")
-    void testHandle2() {
+    void deveFazerAlteracaoDoAluno() {
         Aluno aluno = AlunoFactory.generate();
         AlunoFactory.saveDB(aluno, alunoRepository);
         String cpfAltera = "12312312345";
@@ -96,7 +99,7 @@ class AlunoApplicationServiceTest {
         AlunoDto result = alunoApplicationService.handle(aluno.getId(), cmd);
 
         var eventArgument = ArgumentCaptor.forClass(DomainCommandEvents.class);
-        Mockito.verify(publisher).dispatch(eventArgument.capture());
+        Mockito.verify(schoolPublisher).dispatch(eventArgument.capture());
 
         assertThat(cpfAltera).isEqualTo(result.getCpf());
         assertThat(nomeAltera).isEqualTo(result.getNome());
@@ -108,7 +111,7 @@ class AlunoApplicationServiceTest {
 
     @Test
     @DisplayName("Testando Erro excecao alteracao")
-    void testanErroExcecaoAlteracao() {
+    void deveTestarErroExcecaoAlteracao() {
 
         Aluno aluno = AlunoFactory.generate();
 
@@ -118,7 +121,7 @@ class AlunoApplicationServiceTest {
                 .email(aluno.getEmail())
                 .formaIngresso(aluno.getFormaIngresso())
                 .matricula(aluno.getMatricula())
-                .turmas((Set) aluno.getTurmas())
+                .turmas((Set<String>) aluno.getTurmas())
                 .build();
 
         // when

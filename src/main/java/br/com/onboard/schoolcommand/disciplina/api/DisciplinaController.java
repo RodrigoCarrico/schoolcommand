@@ -1,7 +1,8 @@
 package br.com.onboard.schoolcommand.disciplina.api;
 
+import br.com.onboard.schoolcommand.disciplina.application.DisciplinaService;
+import br.com.onboard.schoolcommand.disciplina.application.command.CriarDisciplinaCommand;
 import br.com.onboard.schoolcommand.disciplina.dto.DisciplinaDto;
-import br.com.onboard.schoolcommand.disciplina.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,20 +22,24 @@ public class DisciplinaController {
     public static final String PATH = "/api/v1/disciplina";
 
 
-   // @Autowired
-   // DisciplinaService disciplinaService;
+    @Autowired
+    DisciplinaService disciplinaService;
 
 
     @PostMapping
-    @Transactional
     public ResponseEntity<DisciplinaDto> cadastrar(@RequestBody @Valid DisciplinaDto disciplinaDto,
                                                    UriComponentsBuilder uriBuilder) {
-      //  disciplinaDto = disciplinaService.cadastrar(disciplinaDto);
-       // URI uri = uriBuilder.path("/{id}").buildAndExpand(disciplinaDto.getId()).toUri();
+        var cmd = CriarDisciplinaCommand.builder()
+                .cargaHoraria(disciplinaDto.getCargaHoraria())
+                .descricao(disciplinaDto.getDescricao())
+                .professorId(disciplinaDto.getProfessorId())
+                .sigla(disciplinaDto.getSigla())
+                .build();
 
-        return null;//ResponseEntity.created(uri).body(disciplinaDto);
+        disciplinaDto = disciplinaService.handler(cmd);
+        URI uri = uriBuilder.path("/{id}").buildAndExpand(disciplinaDto.getId()).toUri();
 
+        return ResponseEntity.created(uri).body(disciplinaDto);
     }
-
 
 }
