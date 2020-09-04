@@ -5,6 +5,8 @@ import br.com.onboard.schoolcommand.pessoa.application.command.aluno.AlteraAluno
 import br.com.onboard.schoolcommand.pessoa.application.command.aluno.CriarAlunoCommand;
 import br.com.onboard.schoolcommand.pessoa.application.service.AlunoApplicationService;
 import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
+import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
+import br.com.onboard.schoolcommand.pessoa.repository.AlunoRepository;
 import br.com.onboard.schoolcommand.utils.GeneratedUUID;
 import br.com.onboard.schoolcommand.utils.TestUtils;
 import org.hamcrest.CoreMatchers;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -44,7 +47,7 @@ class AlunoControllerTest {
 
     @Test
     @DisplayName("Criação de Aluno core")
-     void CriacaoDeAlunoCoreController() throws Exception {
+    void CriacaoDeAlunoCoreController() throws Exception {
         var dto = AlunoDto.builder()
                 .cpf(cpf)
                 .email(email)
@@ -83,6 +86,7 @@ class AlunoControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.nome", CoreMatchers.is(nome)));
 
         // then
+
         Mockito.verify(alunoApplicationService).handle(cmd);
     }
 

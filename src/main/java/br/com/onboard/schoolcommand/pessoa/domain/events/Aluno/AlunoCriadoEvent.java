@@ -3,15 +3,12 @@ package br.com.onboard.schoolcommand.pessoa.domain.events.Aluno;
 import br.com.onboard.schoolcommand.pessoa.domain.enums.FormaIngresso;
 import br.com.onboard.schoolcommand.pessoa.domain.model.Aluno;
 import br.com.onboard.schoolcommand.utils.DomainCommand;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
 @Builder(access = AccessLevel.PRIVATE)
 public class AlunoCriadoEvent implements DomainCommand {
     private final String id;
