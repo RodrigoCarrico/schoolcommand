@@ -26,6 +26,4 @@ public class ProfessorDto {
     private String cpf;
     @NotNull
     private Titulacao titulacao;
-
-
 }

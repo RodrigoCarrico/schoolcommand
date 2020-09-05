@@ -19,7 +19,6 @@ public class ProfessorCriadoEvent implements DomainCommand {
     private final String email;
     private final String cpf;
     private final Titulacao titulacao;
-    private final Set<ProfessorDisciplinaEvent> disciplinas;
 
     public static ProfessorCriadoEvent from(Professor professor) {
         return ProfessorCriadoEvent.builder()
@@ -27,16 +26,6 @@ public class ProfessorCriadoEvent implements DomainCommand {
                 .cpf(professor.getCpf())
                 .email(professor.getEmail()).id(professor.getId())
                 .nome(professor.getNome()).titulacao(professor.getTitulacao())
-                .disciplinas(
-                        professor.getDisciplinas()
-                                .stream().map(ProfessorDisciplinaEvent::from)
-                                .collect(Collectors.toSet()))
                 .build();
-    }
-
-    @Data
-    @AllArgsConstructor(staticName = "from")
-    public static final class ProfessorDisciplinaEvent {
-        private final String disciplinaId;
     }
 }
