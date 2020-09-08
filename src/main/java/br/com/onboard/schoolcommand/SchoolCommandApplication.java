@@ -7,11 +7,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableMongoRepositories
-@EnableSwagger2
-public class SchoolcommandApplication {
-
+public class SchoolCommandApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SchoolcommandApplication.class, args);
+        SpringApplication.run(SchoolCommandApplication.class, args);
     }
-
 }
