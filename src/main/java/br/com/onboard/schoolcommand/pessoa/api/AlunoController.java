@@ -8,7 +8,6 @@ import br.com.onboard.schoolcommand.pessoa.application.command.aluno.AlteraAluno
 import br.com.onboard.schoolcommand.pessoa.application.command.aluno.CriarAlunoCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.onboard.schoolcommand.pessoa.api.dto.AlunoDto;
-import br.com.onboard.schoolcommand.pessoa.application.service.AlunoApplicationService;
+import br.com.onboard.schoolcommand.pessoa.application.service.AlunoService;
 
 @RestController
 @RequestMapping(path = AlunoController.PATH)
@@ -26,7 +25,7 @@ public class AlunoController {
 	public static final String PATH = "/api/v1/aluno";
 	
 	@Autowired
-	AlunoApplicationService alunoService;
+    AlunoService alunoService;
 	
 	@PostMapping
 	public ResponseEntity<AlunoDto> cadastrar(@RequestBody @Valid AlunoDto alunoDto,

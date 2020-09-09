@@ -1,15 +1,13 @@
-package br.com.onboard.schoolcommand.turma.dto;
+package br.com.onboard.schoolcommand.turma.application.command;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Set;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class TurmaDto {
-    private String id;
+public class CriaTurmaCommand {
     private String descricao;
     private Integer anoLetivo;
     private Integer periodoLetivo;

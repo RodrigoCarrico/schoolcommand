@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class AlunoApplicationService {
+public class AlunoService {
 
     @Autowired
     AlunoRepository alunoRepository;

@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class ProfessorApplicationService {
+public class ProfessorService {
 
     @Autowired
     ProfessorRepository professorRepository;

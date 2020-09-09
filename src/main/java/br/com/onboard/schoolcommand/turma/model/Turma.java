@@ -1,54 +1,49 @@
 package br.com.onboard.schoolcommand.turma.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import br.com.onboard.schoolcommand.turma.model.event.TurmaCriadaEvent;
+import br.com.onboard.schoolcommand.utils.DomainCommandEvents;
+import br.com.onboard.schoolcommand.utils.GeneratedUUID;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @ToString
 @Getter
-@EqualsAndHashCode
 @NoArgsConstructor
-@Document
-public class Turma {
+@Document(collection = "turma")
+public class Turma extends DomainCommandEvents {
     @Id
     private String id;
     @NotNull
     @Length(min = 1, max = 255)
     private String descricao;
     @NotNull
-    private int anoLetivo;
+    private Integer anoLetivo;
     @NotNull
-    private int periodoLetivo;
+    private Integer periodoLetivo;
     @NotNull
-    private int numeroVagas;
+    private Integer numeroVagas;
 
-    //@ManyToMany(mappedBy = "turmas")
-    private Collection<String> alunos;
+    private Collection<String> alunos = new HashSet<>();
 
-    /*@ManyToMany
-    @JoinTable(
-            name = "turma_disciplina",
-            joinColumns =
-            @JoinColumn(name = "TURMA_ID", referencedColumnName = "ID"),
-            inverseJoinColumns =
-            @JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "ID")
-    )*/
-    private Collection<String> disciplinas;
+    private Collection<String> disciplinas = new HashSet<>();
 
-    public Turma(String id, @NotNull @NotEmpty @Length(min = 1, max = 255) String descricao, @NotNull @NotEmpty int anoLetivo,
-                 @NotNull @NotEmpty int periodoLetivo, @NotNull @NotEmpty int numeroVagas) {
+    @Builder
+    public Turma(String descricao, Integer anoLetivo,
+                 Integer periodoLetivo, Integer numeroVagas,
+                 Set<String> disciplinas) {
+        this.id = GeneratedUUID.getUUID();
         this.descricao = descricao;
         this.anoLetivo = anoLetivo;
         this.periodoLetivo = periodoLetivo;
         this.numeroVagas = numeroVagas;
+        this.disciplinas = disciplinas;
+        this.addEvent(TurmaCriadaEvent.from(this));
     }
-
 }

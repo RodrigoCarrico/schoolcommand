@@ -25,13 +25,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class DisciplinaControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @MockBean
     DisciplinaService disciplinaService;
 
     @Test
-    @DisplayName("Criação de Aluno core")
+    @DisplayName("Criação de Disicplina core")
     void deveCriarDisciplina() throws Exception {
 
         String professorId = "1";

@@ -32,7 +32,7 @@ class AlunoApplicationServiceTest {
     SCHOOLPublisher schoolPublisher;
 
     @Autowired
-    AlunoApplicationService alunoApplicationService;
+    AlunoService alunoApplicationService;
 
 
 

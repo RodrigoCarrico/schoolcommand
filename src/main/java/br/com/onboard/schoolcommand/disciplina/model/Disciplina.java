@@ -3,12 +3,14 @@ package br.com.onboard.schoolcommand.disciplina.model;
 import br.com.onboard.schoolcommand.disciplina.model.event.DisciplinaCriadaEvent;
 import br.com.onboard.schoolcommand.utils.DomainCommandEvents;
 import br.com.onboard.schoolcommand.utils.GeneratedUUID;
-import lombok.*;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Getter
