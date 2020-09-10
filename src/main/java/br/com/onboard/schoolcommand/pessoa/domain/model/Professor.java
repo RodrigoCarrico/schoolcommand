@@ -29,7 +29,6 @@ public class Professor extends Pessoa {
     public Professor(String nome, String email, String cpf, Titulacao titulacao) {
         super(nome, email, cpf);
         this.titulacao = titulacao;
-        this.disciplinas = disciplinas;
         this.addEvent(ProfessorCriadoEvent.from(this));
     }
 
@@ -39,7 +38,6 @@ public class Professor extends Pessoa {
         this.setEmail(email);
         this.setCpf(cpf);
         this.titulacao = titulacao;
-        this.disciplinas = disciplinas;
         this.addEvent(ProfessorAlteradoEvent.from(this));
     }
 }
